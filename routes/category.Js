@@ -7,13 +7,18 @@ const Category = require("./../model/category");
 //POST
 router.post("/category/create", async (req, res) => {
   try {
-    const newCategory = new Category({
-      title: req.body.title,
-      description: req.body.description,
-      department: req.body.department
-    });
-    await newCategory.save();
-    res.json({ message: "Created" });
+    const departmentId = req.body.departmentId;
+    const department = await Department.findById(departmentId);
+    if (departement) {
+      const newCategory = new Category({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        department: req.body.departmentId
+      });
+      await newCategory.save();
+      res.json({ message: "Created" });
+    } else res.json({ message: "Le département n'existe pas" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -34,6 +39,7 @@ router.post("/category/update", async (req, res) => {
   try {
     if (req.body.id) {
       const category = await Category.findOne({ _id: req.body.id });
+      category.title = req.body.title;
       await category.save();
       res.json({ message: "Updated" });
     } else {
