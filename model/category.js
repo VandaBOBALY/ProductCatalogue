@@ -1,5 +1,7 @@
 //création des models
 
+const mongoose = require("mongoose");
+
 const Category = mongoose.model("Category", {
   title: String,
   description: String,
@@ -9,4 +11,4 @@ const Category = mongoose.model("Category", {
   }
 });
 
-module.exports = Category;
+module.exports = Category; //export du modèle

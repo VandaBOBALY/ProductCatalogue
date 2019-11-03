@@ -1,5 +1,7 @@
 //création des models
 
+const mongoose = require("mongoose");
+
 const Product = mongoose.model("Product", {
   title: String,
   description: String,
@@ -14,4 +16,4 @@ const Product = mongoose.model("Product", {
   }
 });
 
-module.exports = Product;
+module.exports = Product; //export du modèle

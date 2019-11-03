@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const Category = require("./../model/category");
+
 //CRUD :
 //POST
 router.post("/category/create", async (req, res) => {
