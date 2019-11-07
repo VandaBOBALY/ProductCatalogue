@@ -5,9 +5,13 @@ const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/catalogue-app", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/catalogue-app",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 const categoryRoutes = require("./routes/category");
 app.use(categoryRoutes);
@@ -18,6 +22,6 @@ app.use(productRoutes);
 const departmentRoutes = require("./routes/department");
 app.use(departmentRoutes);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
